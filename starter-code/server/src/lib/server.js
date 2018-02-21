@@ -13,9 +13,7 @@ import authRouter from '../router/auth.js'
 import fourOhFour from '../middleware/four-oh-four.js'
 import errorHandler from '../middleware/error-middleware.js'
 
-// TODO: Import io library
-
-import io from './io/io';
+import io from "./io/io"; // its off to work we go
 
 // STATE
 const app = express()
@@ -48,7 +46,7 @@ export const start = (port) => {
     mongo.start()
     .then(() => {
       state.http = Server(app);
-      //TODO: Initialize io() with state.http
+      io(state.http);
       state.http.listen(port || process.env.PORT, () => {
         console.log('__SERVER_UP__', process.env.PORT)
         resolve()
